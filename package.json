@@ -1,0 +1,17 @@
+{
+  "name": "waltercameron.com",
+  "version": "0.0.0-a",
+  "description": "Walter Cameron's personal site",
+  "main": "index.js",
+  "scripts": {
+    "watch:riot": "riot -w src/ build/"
+  },
+  "author": "walter@waltercameron.com",
+  "license": "ISC",
+  "dependencies": {
+    "riot": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23"
+  }
+}
