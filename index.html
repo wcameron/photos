@@ -3,39 +3,28 @@
         <link type="text/css" rel="stylesheet" href="style.css"></link>
         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" rel="stylesheet" type="text/css">
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="riot.js"></script>
+        <script src="build/photo-gallery.js"></script>
         <title>Walter Cameron</title>
     </head>
     <body>
-        <section>
-            <div id="flickr-photos"></div>
-        </section>
+        <photo-gallery></photo-gallery>
+
+        <script>
+            var opts = {
+                maxHeight: window.innerHeight - 200
+            }
+            riot.mount('photo-gallery', opts)
+        </script>
+
         <section class="about">
             <h1>Walter Cameron</h1>
             <ul class="hip-social-media-stuff">
-                <li><span class="icon-twitter"></span></li>
-                <li><span class="icon-github"></span></li>
-                <li><span class="icon-stackoverflow"></span></li>
-                <li><span class="icon-mail"></span></li>
+                <li><a class="icon-twitter" href="https://twitter.com/walt574"></a></li>
+                <li><a class="icon-github" href="https://github.com/wcameron"></a></li>
+                <li><a class="icon-stackoverflow" href="http://stackoverflow.com/users/659635/walter-cameron"></a></li>
+                <li><a class="icon-mail" href="mailto:walter@waltercameron.com"></a></li>
             </ul>
         </section>
-        <script>
-        'use strict';
-        var flickrBase = 'https://api.flickr.com/services/rest'
-        $.ajax({
-            url: flickrBase,
-            data: {
-                method: 'flickr.people.getPublicPhotos',
-                api_key: 'dd8e8543a12f7d465f8e8e59b749202c',
-                user_id: '134947814@N05',
-                format: 'json',
-                nojsoncallback: true
-            }
-        }).done(function(response){
-            response.photos.photo.forEach(function(img){
-                let photoURL = `//farm${img.farm}.static.flickr.com/${img.server}/${img.id}_${img.secret}_h.jpg`
-                $('#flickr-photos').append(`<img src=${photoURL}>`)
-            })
-        })
-        </script>
     </body>
 </html>

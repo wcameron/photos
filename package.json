@@ -4,14 +4,20 @@
   "description": "Walter Cameron's personal site",
   "main": "index.js",
   "scripts": {
-    "watch:riot": "riot -w src/ build/"
+    "watch:riot": "riot -w src/ build/",
+    "watch:stylus": "./node_modules/stylus/bin/stylus -w style.styl",
+    "watch": "npm run watch:riot & npm run watch:stylus",
+    "serve:dev": "python -m SimpleHTTPServer 8999"
   },
   "author": "walter@waltercameron.com",
   "license": "ISC",
-  "dependencies": {
-    "riot": "^2.2.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "babel": "^5.8.23"
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
+    "riot": "^2.2.4",
+    "riotify": "^0.1.2",
+    "stylus": "^0.52.4"
   }
 }
