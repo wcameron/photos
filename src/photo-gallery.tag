@@ -2,14 +2,10 @@
     <section class="photo-gallery">
         <div class="photo-gallery-wrapper"
              riot-style="width: { galleryWidth() }px; left: -{ getSlideOffset() }px ">
-            <ul class="photos">
-                <li each={ photo, i in photos }
-                    class="photos__photo { photos__photo--active: parent.isActivePhoto(i) }">
-                    <img onclick={ selectPhoto }
-                         riot-style="height:{ photoHeight }px"
-                         riot-src={ photo.url }>
-                </li>
-            </ul>
+            <photo-list class="photos">
+                <photo-item each={ photo, i in photos }>
+                </photo-item>
+            </photo-list>
         </div>
     </section>
     <div class="photo-gallery__control" onclick={ prevPhoto }>Previous</div>
@@ -32,11 +28,11 @@
             let width = 0
 
             for (var i = 0; i < this.galleryIndex; i++){
-                width += this.photos[i].width / (this.photos[i].height / this.photoHeight)
+                width += (this.photos[i].width / (this.photos[i].height / this.photoHeight)) - 36
             }
 
             if (this.galleryIndex === this.photos.length -1) {
-                width = (this.trueGalleryWidth() - window.innerWidth) + 36 + 36
+                width = (this.trueGalleryWidth() - window.innerWidth)
             }
 
             return width;

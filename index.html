@@ -5,6 +5,7 @@
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="riot.js"></script>
         <script src="build/photo-gallery.js"></script>
+        <script src="build/photo-item.js"></script>
         <title>Walter Cameron</title>
     </head>
     <body>
@@ -12,13 +13,17 @@
 
         <script>
             var opts = {
-                maxHeight: window.innerHeight - 200
+                maxHeight: window.innerHeight - 300
             }
             riot.mount('photo-gallery', opts)
         </script>
 
         <section class="about">
             <h1>Walter Cameron</h1>
+            <ul class="projects">
+                <li><a href="http://tide.waltercameron.com">tide.waltercameron.com</a></li>
+                <li><a href="http://ff1maps.com">ff1maps.com</a></li>
+            </ul>
             <ul class="hip-social-media-stuff">
                 <li><a class="icon-twitter" href="https://twitter.com/walt574"></a></li>
                 <li><a class="icon-github" href="https://github.com/wcameron"></a></li>

@@ -15,22 +15,43 @@ h1 {
     margin-right: 2em;
 }
 
-.hip-social-media-stuff {
+.about ul {
     list-style: none;
     margin: 0;
     padding:0;
     color: white;
-    display:block;
+    display: inline;
 }
 
-.hip-social-media-stuff li {
+.projects {
+    display: inline;
+    margin-left: .5em;
+    font-size: .9em;
+}
+
+.hip-social-media-stuff {
+    display: inline;
+}
+
+.hip-social-media-stuff li,
+.projects li {
     display: inline;
     margin-left: .5em;
 }
 
-.hip-social-media-stuff a {
+.hip-social-media-stuff a,
+.projects a {
     color: white;
     text-decoration: none;
+}
+
+.projects a {
+    top: -.15em;
+    position: relative;
+    font-weight: 200;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .tabContent__item {
@@ -56,8 +77,9 @@ h1 {
 
 .photos {
     list-style: none;
-    margin: 4em 0 0;
-    padding: 0 0 0 36px;
+    margin: 9em 0 0;
+    padding: 0 0 0;
+    display: block;
 }
 
 .photos__photo {
