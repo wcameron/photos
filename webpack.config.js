@@ -16,7 +16,8 @@ module.exports = {
       { test: /\.tag$/, exclude: /node_modules/, loader: 'riotjs-loader', query: { type: 'none' } }
     ],
     loaders: [
-      { test: /\.js|\.tag$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015'] } }
+      { test: /\.js|\.tag$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015'] } },
+      { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' }
     ]
   },
   devServer: {

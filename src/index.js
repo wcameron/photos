@@ -3,6 +3,7 @@ import fetchPhotos from './fetch-photos'
 import './photo-gallery.tag'
 import './photo-item.tag'
 import './gallery-control.tag'
+import './style.styl'
 
 function run(){
     const observable = riot.observable()
