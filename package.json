@@ -4,20 +4,25 @@
   "description": "Walter Cameron's personal site",
   "main": "index.js",
   "scripts": {
-    "watch:riot": "riot -w src/ build/",
-    "watch:stylus": "./node_modules/stylus/bin/stylus -w style.styl",
+    "watch:stylus": "./node_modules/stylus/bin/stylus -w src/style.styl -o public/",
     "watch": "npm run watch:riot & npm run watch:stylus",
-    "serve:dev": "python -m SimpleHTTPServer 8999"
+    "dev": "./node_modules/.bin/webpack-dev-server --inline --hot"
   },
   "author": "walter@waltercameron.com",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "url-search-params": "^0.2.0"
+  },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babelify": "^6.3.0",
-    "browserify": "^11.2.0",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-plugin-riot": "^0.1.4",
     "riot": "^2.2.4",
-    "riotify": "^0.1.2",
-    "stylus": "^0.52.4"
+    "riotjs-loader": "^1.2.0",
+    "stylus": "^0.52.4",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1"
   }
 }
