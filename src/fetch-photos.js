@@ -21,6 +21,7 @@ export default () => {
         .then(resp => resp.json())
         .then(json => json.photoset.photo.map(img => ({
             url: img.url_l,
+            fullSize: img.url_h,
             width: parseInt(img.width_h, 10),
             height: parseInt(img.height_h, 10)
         }))

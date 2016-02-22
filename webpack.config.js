@@ -1,27 +1,48 @@
-var webpack = require('webpack');
+var webpack = require('webpack')
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index',
-  output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      riot: 'riot'
-    })
-  ],
-  module: {
-    preLoaders: [
-      { test: /\.tag$/, exclude: /node_modules/, loader: 'riotjs-loader', query: { type: 'none' } }
+    entry: './src/index',
+    output: {
+        path: __dirname + '/public',
+        filename: 'bundle.js'
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            riot: 'riot'
+        }),
+        new CopyWebpackPlugin([{
+            from: 'static'
+        }])
     ],
-    loaders: [
-      { test: /\.js|\.tag$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015'] } },
-      { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' }
-    ]
-  },
-  devServer: {
-    contentBase: './public',
-    port: '8999'
-  }
-};
+    module: {
+        preLoaders: [
+            {
+                test: /\.js|\.tag|\.styl$/,
+                loader: 'source-map-loader'
+            },
+            {
+                test: /\.tag$/,
+                exclude: /node_modules/,
+                loader: 'riotjs-loader',
+                query: { type: 'none' }
+            }
+        ],
+        loaders: [
+            {
+                test: /\.js|\.tag$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: { presets: ['es2015'] } },
+            {
+                test: /\.styl$/,
+                loader: 'style-loader!css-loader!stylus-loader?sourceMap'
+            }
+        ]
+    },
+    devtool: 'source-map',
+    devServer: {
+        contentBase: './public',
+        port: '8999'
+    }
+}

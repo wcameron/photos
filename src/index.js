@@ -1,16 +1,20 @@
 import riot from 'riot'
 import fetchPhotos from './fetch-photos'
 import './photo-gallery.tag'
+import './photo-viewer.tag'
 import './photo-item.tag'
 import './gallery-control.tag'
+import './cube-spinner.tag'
 import './style.styl'
 
 function run(){
+
     const observable = riot.observable()
     const opts = {
-        maxHeight: window.innerHeight - 500,
+        maxHeight: window.innerHeight * 0.333,
         api: observable
     }
+    riot.mixin('observable', {observable: observable})
     riot.mount('photo-gallery', opts)
     fetchPhotos().then(photos => observable.trigger('gotPhotos', photos))
 }
