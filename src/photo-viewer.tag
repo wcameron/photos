@@ -11,33 +11,34 @@
 
         this.close = ()=>{
             this.show = false
-            this.url = undefined
-            console.log("close fired")
             this.update()
         }
 
         this.on('updated', () => {
-            if (!this.embiggened.width){
-                loadListener(this.embiggened)
-            } else {
-                this.hidePhoto = true;
+            if (this.hidePhoto) {
+                if (!this.embiggened.width || !this.embiggened.height){
+                    loadListener(this.embiggened)
+                } else {
+                    this.hidePhoto = false
+                    this.update()
+                }
             }
         })
 
         this.observable.on('photoSelected', (url)=>{
             this.show = true
-            this.hidePhoto = true;
+            this.hidePhoto = true
             this.url = url
+            awaitingLoad = true
+            this.update()
         })
 
         function loadListener(image){
-            console.log('listener fired')
             if (awaitingLoad) {
                 image.onload = () =>{
-                    console.log("listener listening")
                     self.hidePhoto = false
                     awaitingLoad = false
-                    self.update();
+                    self.update()
                 }
             }
         }

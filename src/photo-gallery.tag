@@ -19,28 +19,6 @@
             this.update()
         })
 
-
-        /*
-        function scrollToElement(element, parent, scrollDuration) {
-            const scrollWidth = element.offsetLeft,
-                  scrollStep = Math.PI / ( scrollDuration / 15 ),
-                  cosParameter = scrollWidth / 2;
-            var scrollCount = 0,
-                scrollMargin;
-            requestAnimationFrame(step);
-            function step () {
-                setTimeout(function() {
-                    if ( window.scrollY != 0 ) {
-                        requestAnimationFrame(step);
-                        scrollCount = scrollCount + 1;
-                        scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
-                        window.scrollTo( 0, ( scrollWidth - scrollMargin ) );
-                    }
-                }, 15 );
-            }
-        }
-        */
-
         this.scrollToThumb = (photo) => {
             let targetScroll = photo.root.offsetLeft -
                                 (window.innerWidth / 2) +
@@ -69,7 +47,6 @@
             if ((this.root.scrollWidth - this.root.clientWidth) < targetScroll) {
                 targetScroll = this.root.scrollWidth - this.root.clientWidth
             }
-            console.log(targetScroll, this.root.offsetLeft)
             scrollToPhoto(targetScroll, this.root)
         }
 

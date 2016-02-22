@@ -9,7 +9,8 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            riot: 'riot'
+            riot: 'riot',
+            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
         }),
         new CopyWebpackPlugin([{
             from: 'static'
