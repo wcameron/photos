@@ -1,18 +1,20 @@
 {
-  "name": "waltercameron.com",
+  "name": "wcameron-photos",
   "version": "0.0.0-a",
-  "description": "Walter Cameron's personal site",
+  "description": "Walter Cameron's Photos",
   "main": "index.js",
   "scripts": {
     "watch:stylus": "./node_modules/stylus/bin/stylus -w src/style.styl -o public/",
-    "dev": "./node_modules/.bin/webpack-dev-server --inline --hot"
+    "dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
+    "postinstall": "./node_modules/.bin/webpack",
+    "start": "node server.js"
   },
   "author": "walter@waltercameron.com",
   "license": "ISC",
   "dependencies": {
-    "url-search-params": "^0.2.0"
-  },
-  "devDependencies": {
+    "express": "^4.13.4",
+    "serve-static": "^1.10.2",
+    "url-search-params": "^0.2.0",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
@@ -28,5 +30,11 @@
     "stylus-loader": "^1.5.1",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
+  },
+  "devDependencies": {
+
+  },
+  "engines": {
+    "node": "4.10.x"
   }
 }
