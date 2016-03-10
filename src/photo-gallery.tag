@@ -12,7 +12,7 @@
             this.update()
         })
 
-        this.on('photoSelected', (photo)=>{
+        this.on('photoSelected', (photo) => {
             this.selectedPhoto = photo.fullSize
             this.observable.trigger('photoSelected', photo.fullSize)
             this.scrollToThumb(photo)
@@ -20,34 +20,44 @@
         })
 
         this.scrollToThumb = (photo) => {
-            let targetScroll = photo.root.offsetLeft -
-                                (window.innerWidth / 2) +
-                                (photo.root.offsetWidth / 2)
+
+            function findScrollTarget(gallery, photo){
+                const target = photo.offsetLeft - 
+                              (window.innerWidth / 2) +
+                              (photo.offsetWidth / 2),
+                    galleryEdge = (gallery.scrollWidth - gallery.clientWidth)
+                if (galleryEdge < target) {
+                    return galleryEdge
+                }
+                return target
+            }
 
             function scrollToPhoto(scrollDestination, parent){
-                const   scrollOrigin = parent.scrollLeft,
-                        scrollSteps = Math.PI / (500 / 15),
-                        cosParameter = scrollDestination / 2
+                const scrollOrigin = parent.scrollLeft,
+                      scrollSteps = Math.PI / (500 / 15),
+                      cosParameter = scrollDestination / 2
                 let scrollCount = 0,
                     scrollMargin
-                window.requestAnimationFrame(scrollStep)
+
                 function scrollStep() {
-                    setTimeout(function(){
-                        if ((parent.scrollLeft + 1) < scrollDestination){
-                            window.requestAnimationFrame(scrollStep)
-                            scrollCount++
-                            scrollMargin = cosParameter - (cosParameter * Math.cos(scrollCount * scrollSteps))
-                            parent.scrollLeft = scrollOrigin + scrollMargin;
-                        } else if(scrollCount === 1000) {
-                            console.error('hitting max attempts')
-                        }
-                    }, 15)
+                    if ((parent.scrollLeft + 1) < scrollDestination){
+                        window.requestAnimationFrame(animationListener)
+                        scrollCount++
+                        scrollMargin = cosParameter - (cosParameter * 
+                            Math.cos(scrollCount * scrollSteps))
+                        parent.scrollLeft = scrollOrigin + scrollMargin
+                    }
                 }
+
+                function animationListener() {
+                    setTimeout(scrollStep, 15)
+                }
+
+                window.requestAnimationFrame(animationListener)
             }
-            if ((this.root.scrollWidth - this.root.clientWidth) < targetScroll) {
-                targetScroll = this.root.scrollWidth - this.root.clientWidth
-            }
-            scrollToPhoto(targetScroll, this.root)
+
+            scrollToPhoto(findScrollTarget(this.root, photo.root), this.root)
+
         }
 
     </script>
