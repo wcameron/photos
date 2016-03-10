@@ -6,42 +6,31 @@
     <script type="babel">
         this.mixin('observable')
         this.show = false
-        let awaitingLoad = true
-        const self = this
-
-        this.close = ()=>{
-            this.show = false
+        const imagesLoaded = require('imagesloaded')
+        let loadListener
+        let loadHandler = (instance, image) => {
+            this.hidePhoto = false
             this.update()
         }
 
-        this.on('updated', () => {
-            if (this.hidePhoto) {
-                if (!this.embiggened.width || !this.embiggened.height){
-                    loadListener(this.embiggened)
-                } else {
-                    this.hidePhoto = false
-                    this.update()
-                }
-            }
-        })
+        this.close = () =>{
+            this.show = false
+            this.url = undefined
+            this.update()
+        }
 
-        this.observable.on('photoSelected', (url)=>{
+        this.observable.on('photoSelected', (url) =>{
             this.show = true
             this.hidePhoto = true
             this.url = url
-            awaitingLoad = true
+
+            loadListener = imagesLoaded(this.root)
+            loadListener.off('always', loadHandler)
+            loadListener.on('always', loadHandler)
+
             this.update()
         })
 
-        function loadListener(image){
-            if (awaitingLoad) {
-                image.onload = () =>{
-                    self.hidePhoto = false
-                    awaitingLoad = false
-                    self.update()
-                }
-            }
-        }
     </script>
     <style type="stylus" scoped>
         :scope {

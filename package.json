@@ -22,6 +22,7 @@
     "eslint-plugin-riot": "^0.1.4",
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
+    "imagesloaded": "^4.1.0",
     "imports-loader": "^0.6.5",
     "riot": "^2.2.4",
     "riotjs-loader": "^1.2.0",
