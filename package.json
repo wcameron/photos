@@ -1,6 +1,6 @@
 {
   "name": "wcameron-photos",
-  "version": "0.0.0-a",
+  "version": "1.0.0",
   "description": "Walter Cameron's Photos",
   "main": "index.js",
   "scripts": {
