@@ -1,7 +1,12 @@
 <photo-viewer if={ show } onclick={ close }>
-    <img name="embiggened" hide={ hidePhoto } src={ url }/>
-    <cube-spinner show={ hidePhoto }></cube-spinner>
-    <div onclick={ close } class='close'>close</div>
+    <div class="wrapper">
+        <div class="inner">
+            <img name="embiggened" hide={ hidePhoto } src={ url }/>
+            <cube-spinner show={ hidePhoto }></cube-spinner>
+            <button onclick={ close } class='close'>close</button>
+        </div>
+    </div>
+
 
     <script type="babel">
         this.mixin('observable')
@@ -34,20 +39,32 @@
     </script>
     <style type="stylus" scoped>
         :scope {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             right: 0;
-            display: flex;
-            justify-content: center;
             background: rgba(0,0,0,.5);
         }
-        img {
+        .wrapper {
             display: flex;
-            margin: 5%;
-            max-height: 90%;
-            box-shadow: black 0px 0px 10em 2em;
+        }
+        .inner {
+            flex: 0 1 auto;
+            display: flex;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+        }
+        img {
+            flex: 0 1 auto;
+            height: 100%;
+            flex: 0 1 auto;
+            max-height: calc(100% - 6em);
+            width: calc(100% - 6em);
+            object-fit: scale-down;
+            margin: 3em;
         }
         .close {
             position: absolute;

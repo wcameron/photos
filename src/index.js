@@ -16,6 +16,7 @@ function run(){
     }
     riot.mixin('observable', {observable: observable})
     riot.mount('photo-gallery', opts)
+    riot.mount('photo-viewer', opts)
     fetchPhotos().then(photos => observable.trigger('gotPhotos', photos))
 }
 

@@ -1,6 +1,5 @@
 <photo-gallery>
     <photo-item each={ photos }></photo-item>
-    <photo-viewer></photo-viewer>
     <script type="babel">
         'use strict'
 
