@@ -34,11 +34,7 @@ module.exports = {
                 test: /\.js|\.tag$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: { presets: ['es2015'] } },
-            {
-                test: /\.styl$/,
-                loader: 'style-loader!css-loader!stylus-loader?sourceMap'
-            }
+                query: { presets: ['es2015'] } }
         ]
     },
     devtool: 'source-map',

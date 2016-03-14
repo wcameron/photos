@@ -6,7 +6,7 @@
   "scripts": {
     "watch:stylus": "./node_modules/stylus/bin/stylus -w src/style.styl -o public/",
     "dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
-    "postinstall": "./node_modules/.bin/webpack",
+    "postinstall": "./node_modules/.bin/webpack && ./node_modules/stylus/bin/stylus src/style.styl -o public/",
     "start": "node server.js"
   },
   "author": "walter@waltercameron.com",

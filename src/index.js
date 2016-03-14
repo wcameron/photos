@@ -5,7 +5,6 @@ import './photo-viewer.tag'
 import './photo-item.tag'
 import './gallery-control.tag'
 import './cube-spinner.tag'
-import './style.styl'
 
 function run(){
 
