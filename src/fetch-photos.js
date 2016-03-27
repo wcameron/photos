@@ -25,7 +25,5 @@ export default () => {
             width: parseInt(img.width_h, 10),
             height: parseInt(img.height_h, 10)
         }))
-        ).catch(function(err) {
-            console.error('parsing failed', err)
-        })
+        ).catch(err => console.error('parsing failed', err))
 }

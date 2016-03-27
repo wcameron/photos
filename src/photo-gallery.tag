@@ -1,8 +1,9 @@
-<photo-gallery>
+<photo-gallery riot-style="height: { opts.maxHeight + 'px' }">
     <photo-item each={ photos }></photo-item>
     <script type="babel">
         'use strict'
 
+        const bezierEasing = require('bezier-easing')
         this.photoHeight = opts.maxHeight
         this.photos = []
         this.mixin('observable')
@@ -20,31 +21,31 @@
 
         this.scrollToThumb = (photo) => {
 
-            function findScrollTarget(gallery, photo){
-                const target = photo.offsetLeft - 
+            function findScrollTarget(gallery, photo) {
+                const target = photo.offsetLeft -
                               (window.innerWidth / 2) +
                               (photo.offsetWidth / 2),
-                    galleryEdge = (gallery.scrollWidth - gallery.clientWidth)
-                if (galleryEdge < target) {
-                    return galleryEdge
+                      edge = (gallery.scrollWidth - gallery.clientWidth)
+                if (edge < target) {
+                    return edge
                 }
                 return target
             }
 
-            function scrollToPhoto(scrollDestination, parent){
-                const scrollOrigin = parent.scrollLeft,
-                      scrollSteps = Math.PI / (500 / 15),
-                      cosParameter = scrollDestination / 2
-                let scrollCount = 0,
-                    scrollMargin
+            function scrollToPhoto(destination, parent) {
+                const easing = bezierEasing(0.42, 0.0, 0.58, 1.0),
+                      origin = parent.scrollLeft,
+                      distance = destination - origin,
+                      steps = 35
+                let count = 0
 
                 function scrollStep() {
-                    if ((parent.scrollLeft + 1) < scrollDestination){
+                    if (parent.scrollLeft !== destination && count <= steps){
                         window.requestAnimationFrame(animationListener)
-                        scrollCount++
-                        scrollMargin = cosParameter - (cosParameter * 
-                            Math.cos(scrollCount * scrollSteps))
-                        parent.scrollLeft = scrollOrigin + scrollMargin
+
+                        let movement = distance * easing(count / steps)
+                        parent.scrollLeft = origin + movement
+                        count++
                     }
                 }
 
@@ -56,7 +57,6 @@
             }
 
             scrollToPhoto(findScrollTarget(this.root, photo.root), this.root)
-
         }
 
     </script>
