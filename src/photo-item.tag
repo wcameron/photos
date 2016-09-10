@@ -12,6 +12,7 @@
             display: inline-block;
             margin: 0 0 0 0.5em;
             flex-shrink: 0;
+            cursor: pointer;
         }
     </style>
 </photo-item>
