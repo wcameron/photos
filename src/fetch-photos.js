@@ -7,8 +7,16 @@ export default () => {
         api_key: 'dd8e8543a12f7d465f8e8e59b749202c',
         user_id: '134947814@N05',
         format: 'json',
-        extras: 'o_dims,url_h,url_l',
+        extras: 'o_dims,url_h,url_l,url_c',
         nojsoncallback: true
+    }
+
+    function getImageURL(img){
+        if (window.innerWidth > 600){
+            return img.url_l
+        } else {
+            return img.url_c
+        }
     }
 
     apiURL.search = Object.keys(flickrParams)
@@ -20,7 +28,7 @@ export default () => {
     return fetch(apiURL, { method: 'GET'})
         .then(resp => resp.json())
         .then(json => json.photoset.photo.map(img => ({
-            url: img.url_l,
+            url: getImageURL(img),
             fullSize: img.url_h,
             width: parseInt(img.width_h, 10),
             height: parseInt(img.height_h, 10)

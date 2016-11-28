@@ -10,7 +10,7 @@ function run(){
 
     const observable = riot.observable()
     const opts = {
-        maxHeight: window.innerHeight * 0.333,
+        maxHeight: window.innerHeight * 0.25,
         api: observable
     }
     riot.mixin('observable', {observable: observable})

@@ -1,4 +1,4 @@
-<photo-gallery riot-style="height: { opts.maxHeight + 'px' }">
+<photo-gallery>
     <photo-item each={ photos }></photo-item>
     <script type="babel">
         'use strict'
@@ -63,11 +63,15 @@
     <style type="stylus" scoped>
         :scope {
             width: 100%;
-            overflow-x: scroll;
-            display: flex;
+            text-align: right;
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
-        photo-item:last-child {
-            padding-right: 0.5em;
+        @media (max-width: 600px) {
+            :scope {
+                text-align: center;
+                margin-top: 0;
+            }
         }
     </style>
 </photo-gallery>
