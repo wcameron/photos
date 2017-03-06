@@ -66,6 +66,10 @@
             text-align: right;
             margin-top: 1em;
             margin-bottom: 1em;
+            justify-content: flex-end;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
         }
         @media (max-width: 600px) {
             :scope {
