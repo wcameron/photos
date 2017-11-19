@@ -39,6 +39,6 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": "4.10.x"
+    "node": "8.9.x"
   }
 }
